@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "29089781-1213-4823-9dcd-64e28c43b29a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:11000/authentication/signup",
+    "url": "http://localhost:11000/authentication/signup",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-08-26T20:35:53.564Z",
+    "modified": "2022-08-26T20:35:55.169Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\":\"jdsljf2\",\n  \"email\":\"idsfjjjjdsljk@gmail.com\",\n  \"password\":\"dlskjfljkKEru3eio34#$\",\n  \"confirmpassword\":\"dlskjfljkKEru3eio34#$\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "4d991d06-e9a9-46a7-94b6-703a02278ef2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:11000/authentication/signup",
+    "url": "http://localhost:11000/authentication/signup",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-08-26T20:35:59.888Z",
+    "modified": "2022-08-26T21:26:14.862Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\":\"m32233\",\n  \"email\":\"idsfjjjjdljk@gmail.com\",\n  \"password\":\"dlskjfljkKEru3eio34#$\",\n  \"confirmpassword\":\"lskjfljkKEru3eio34#$\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

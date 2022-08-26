@@ -6,15 +6,17 @@ const crypto = require("crypto");
 
 exports.Auth_Signup = async (req, res) => {
   try {
-    const { username, email, password: textpassword } = req.body;
+    const { username, email, password: textpassword,confirmpassword } = req.body;
     res.set("Content-Type", "application/json");
-
+    if (textpassword !== confirmpassword ){
+      return res.status(400).send({error:'Password does not match check your password and try again.'})
+    }
     const IsEmailExist = await User_Info_Modal.findOne({ email: email });
 
     if (IsEmailExist) {
       return res
         .status(400)
-        .send({ data: "Email is already in use choose another ." });
+        .send({ "data": "Email is already in use choose another ." });
     }
 
     const saltRound = 10;
@@ -33,8 +35,8 @@ exports.Auth_Signup = async (req, res) => {
     const VerifyMessage = `${process.env.BASE_URL}/user/verify/email/${NewUser._id}/${Verifytoken.token}`;
     await Signup_mail(email, VerifyMessage);
     return res.status(200).send({
-      status: "ok",
-      data: `your account has been created successfully. Check your email ${email} to verify your email.`,
+    
+      "data": `your account has been created successfully. Check your email ${email} to verify your email.`,
     });
   } catch (err) {
     console.log(err);
