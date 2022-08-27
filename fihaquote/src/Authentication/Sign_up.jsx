@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export default function Sign_up() {
   // define state for signup
@@ -8,10 +9,11 @@ export default function Sign_up() {
   const [password, setpassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
   const [Processing, setprocess] = useState("Singn up");
-  const [successmsg, setsuccesmsg] = useState("your data has been applied.");
-  const [errorsmsg, seterrormsg] = useState(
-    "Please enter valid password and email id"
-  );
+  const [successmsg, setsuccesmsg] = useState("");
+  const [errorsmsg, seterrormsg] = useState("");
+
+  // usenavigate hook to navigate to other routes
+  const navigate = useNavigate() ;
 
   // All onchange function of input tag
   const UsernameChangeFunc = (e) => {
@@ -30,13 +32,13 @@ export default function Sign_up() {
 
   // end of onchange function of input tag
 
-  // Send the data to the backend
-  var response ;
+  // Send the result to the backend
+
   const SignupFormFunc = async () => {
     // change submit button value
     setprocess("Processing.....");
 
-    response = await fetch("http://localhost:11000/authentication/signup", {
+    await fetch("http://localhost:11000/authentication/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,35 +50,58 @@ export default function Sign_up() {
         username,
         confirmpassword,
       }),
-    }).then((res)=> res.json())
-    .catch((err)=> console.log(err))
-      console.log(response)
+    }).then(async (res) => {
+      const result = await res.json();
 
-    //   console.log(res);
-    //   console.table(res)
-    //   if (res.status === 200) {
-    //     setprocess("Successful.");
-    //     setemail('');
-    //     setusername('')
-    //     setpassword('')
-    //     setConfirmpassword('')
-    //     const showmsg = document.getElementById('success');
-    //     setsuccesmsg(res.data);
-    //     console.log(res.data)
-    //     showmsg.style.display = 'block';
+      // check is request is correct or not
+      if (res.status === 200) {
+        // debuging
+        console.log(res);
+        console.log(result);
 
-    //   }
-    //   else{
-    //     setprocess('sign up')
-    //     const showmsg = document.getElementById('error');
-    //     seterrormsg(res.error);
-    //     console.log(res.error)
-    //     showmsg.style.display = 'block';
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+        // set the state empty
+        setprocess("Successful.");
+        setemail("");
+        setusername("");
+        setpassword("");
+        setConfirmpassword("");
+
+        // display successful message
+        var showmsg = document.getElementById("success");
+        setsuccesmsg(result.data);
+        showmsg.innerText = successmsg;
+        console.log(result);
+        showmsg.style.display = "block";
+
+        // hide the message after 5 seconds
+        setTimeout(() => {
+          setsuccesmsg("");
+          showmsg.style.display = "none";
+          setprocess("Sign up");
+          navigate('/V2/auth/sign_in')
+        }, 5000);
+      } else {
+        setprocess("Failed");
+
+        // debuging
+        console.log(res);
+        console.log(result);
+
+        // show error message
+        var showmsgs = document.getElementById("error");
+        seterrormsg(result.error);
+        showmsgs.innerText = errorsmsg;
+        console.log(result.error);
+        showmsgs.style.display = "block";
+
+        // hide the message after 5 secconds
+        setTimeout(() => {
+          seterrormsg("");
+          showmsgs.style.display = "none";
+          setprocess("Sign up");
+        }, 5000);
+      }
+    });
   };
 
   return (
