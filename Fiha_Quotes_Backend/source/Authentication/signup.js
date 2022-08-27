@@ -34,7 +34,7 @@ exports.Auth_Signup = async (req, res) => {
     });
     const VerifyMessage = `${process.env.BASE_URL}/user/verify/email/${NewUser._id}/${Verifytoken.token}`;
     await Signup_mail(email, VerifyMessage);
-    return res.status(200).send({
+    return res.status(200).json({
     
       "data": `your account has been created successfully. Check your email ${email} to verify your email.`,
     });
