@@ -22,6 +22,7 @@ function App() {
        <Route path='/notification' element={<Notifications />} />
        <Route path='/V2/auth/sign_up' element={<SignUp/>} />
        <Route path='/V2/auth/sign_in' element={<SignIn/>} />
+       
      </Routes>
      </Router>
 
