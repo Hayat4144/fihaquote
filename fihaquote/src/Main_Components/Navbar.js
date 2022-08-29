@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { VscHome } from "react-icons/vsc";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -8,68 +8,146 @@ import { CgProfile } from "react-icons/cg";
 import { FaThinkPeaks } from "react-icons/fa";
 import { RiSettings2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import {AppContext} from '../Context/Context_State'
-
+import { useDispatch, useSelector  } from "react-redux";
+import { useCallback } from "react";
 
 
 export default function Navbar() {
-  const mystates = useContext(AppContext) ;
-  const {name} = mystates ;
+
+  const dispatch = useDispatch() ;
+  const name = useSelector(state => state.MyReducer.name);
+  console.log(name)
   return (
     <div className="Menubar">
-        <div>hello {name}</div>
-     
-        <MenuIcons>
-            <Icons>
-             <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit'}}><VscHome fontSize={'2em'} /> <Text>Home</Text></Link>
-            </Icons>
-            <Icons >
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}><IoIosNotificationsOutline fontSize={'2em'} /><Text>Notification</Text> </Link> 
-            </Icons>
-            <Icons>
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}><BiMessage fontSize={'2em'} /><Text>Message</Text></Link>
-            </Icons>
-            <Icons>
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}> <BsBookmarks fontSize={'2em'} /><Text>Bookmarks</Text></Link>
-            </Icons>
-            <Icons>
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}> <CgProfile fontSize={'2em'} /><Text>Profile</Text></Link>
-            </Icons>
-            <Icons>
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}> <FaThinkPeaks fontSize={'2em'} /><Text>Profile</Text></Link>
-            </Icons>
-            <Icons>
-            <Link to='/notification' style={{ color: 'inherit', textDecoration: 'inherit', marginTop:'1em'}}>   <RiSettings2Line fontSize={'2em'} /><Text>Profile</Text></Link>
-            </Icons>
-        </MenuIcons>
+      <div
+        onClick={() => {
+          console.log("clicked");
+
+        }}
+      >
+       
+      <button onClick={useCallback(
+        () => {
+          dispatch({type:'SHOWNAME'})
+        },
+        [],
+      )
+      }>s</button>  hello
+      </div>
+
+      <MenuIcons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
+            <VscHome fontSize={"2em"} /> <Text> Home  </Text>
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            <IoIosNotificationsOutline fontSize={"2em"} />
+            <Text>Notification</Text>{" "}
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            <BiMessage fontSize={"2em"} />
+            <Text>Message</Text>
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            {" "}
+            <BsBookmarks fontSize={"2em"} />
+            <Text>Bookmarks</Text>
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            {" "}
+            <CgProfile fontSize={"2em"} />
+            <Text>Profile</Text>
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            {" "}
+            <FaThinkPeaks fontSize={"2em"} />
+            <Text>Profile</Text>
+          </Link>
+        </Icons>
+        <Icons>
+          <Link
+            to="/notification"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              marginTop: "1em",
+            }}
+          >
+            {" "}
+            <RiSettings2Line fontSize={"2em"} />
+            <Text>Profile</Text>
+          </Link>
+        </Icons>
+      </MenuIcons>
     </div>
   );
 }
 
-
 const MenuIcons = styled.div`
-    margin-top:2em;
-    margin-left:1em;
-   
-` ;
+  margin-top: 2em;
+  margin-left: 1em;
+`;
 
 const Icons = styled.div`
-   display:flex;
-  
-  
-    
-`
+  display: flex;
+`;
 
 const Text = styled.p`
-    display:none;
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.3em;
-    color: rgb(41, 41, 41);
-    margin-left:1em;
-    margin-button:0;
-`
-
-
+  display: none;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  color: rgb(41, 41, 41);
+  margin-left: 1em;
+  margin-button: 0;
+`;
 
 // margin-top:2em;
 // display:flex;
