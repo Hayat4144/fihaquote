@@ -12,8 +12,11 @@ const Sign_In_Reducer = (state= initialstate,action)=>{
             return { ...state,IsLogdin:true,IsSuccess:true};
             
         case 'SIGIN_ERROR':
-            return {...state,IsError:true}
-    
+            return {...state,IsError:true};
+
+	case 'IsLogout':
+		    return {...state,IsLogdin:false};
+	    
         default:
             return state;
     }

@@ -128,7 +128,7 @@ const SigninPage = styled.div`
   heigth: 80%;
   border: 0 solid #000;
   margin-top: 1em;
-
+  font-family: 'Oxygen', sans-serif;
   // responsive design  set the width of container
   @media only screen and (max-width: 896px) {
     width: 40%;

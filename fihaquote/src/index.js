@@ -3,24 +3,28 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContextState } from "./Context/Context_State";
-import { createStore,applyMiddleware } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
-import All_My_Reducres from "./Context/Reducer/All_My_Reducers";
-import thunkMiddleware from "redux-thunk";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import PersistReducer from "./Context/Reducer/All_My_Reducers";
 
 // create store
-const store = createStore(All_My_Reducres,applyMiddleware(thunkMiddleware));
+const store = createStore(PersistReducer);
+let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <div>
     {/* provide state to all the apps with redux and context api */}
     <Provider store={store}>
-      <ContextState>
-        <App />
-      </ContextState>
+      <PersistGate loading={null} persistor={persistor}>
+        <ContextState>
+          <App />
+        </ContextState>
+      </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </div>
 );
 
 // If you want to start measuring performance in your app, pass a function
