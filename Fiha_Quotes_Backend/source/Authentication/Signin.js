@@ -28,8 +28,8 @@ exports.Sigin = async(req,res)=>{
             res.cookie('token',token,{
                 httpOnly:true,
                 expires:new Date(Date.now() + 900000),
-                SameSite:'Strict',
-                secure:true
+                SameSite:'none',
+                
             })
           return res.status(200).send({data:'Loging Successful.'})
           }

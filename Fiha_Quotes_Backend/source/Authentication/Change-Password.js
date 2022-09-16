@@ -14,10 +14,10 @@ exports.ChangePassword = async (req, res) => {
     if (IsUser && IsPasswordMatch) {
       const saltRound = 10;
       const hashpassword = await bcrypt.hash(newpassword, saltRound);
-      const changepassword = await User_Info_Modal.findByIdAndUpdate(UserId,{ password: hashpassword },{ new: true }      );
-      return res.status(200).json({ data: changepassword });
+      const changepassword = await User_Info_Modal.findByIdAndUpdate(UserId,{ password: hashpassword },{ new: true })
+	    return res.status(200).json({ data: "Your password has been changed successful."});
     } else {
-      return res.status(401).json({ error: "Invalid Token" });
+      return res.status(401).json({ error: "Invalid Password  Try again." });
     }
   } catch (err) {
     console.log(err);
