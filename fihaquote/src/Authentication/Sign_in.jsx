@@ -3,6 +3,9 @@ import { BASE_URL } from "../Config/BaseUrl";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { FiEyeOff } from "react-icons/fi";
+
 
 export default function Sign_in() {
   // set the state
@@ -10,6 +13,7 @@ export default function Sign_in() {
   const [errormsg, seterrormsgs] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [showpassword,setshowpassword] = useState(false) ;
 
   // change func
   const EmailChangeFunc = (e) => {
@@ -18,7 +22,10 @@ export default function Sign_in() {
   const PasswordChangeFunc = (e) => {
     setpassword(e.target.value);
   };
-
+  
+  const showpasswordfunc = ()=>{
+    setshowpassword(!showpassword)
+  }
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -62,8 +69,8 @@ export default function Sign_in() {
   return (
     <SigninPage>
       <WelcomeText>
-        <h2 className="company-name">FihaShare</h2>
-        <h3 className="content-text">
+        <h2 className="company-name text-center text-center">FihaShare</h2>
+        <h3 className="content-text text-center">
           Welcome Back We are Glad to see you again here.
         </h3>
       </WelcomeText>
@@ -82,7 +89,7 @@ export default function Sign_in() {
             SIGNIN_FUNC(email, password);
           }}
         >
-          <div className="email">
+          <div className="email input-field">
             <input
               type="email"
               placeholder="Enter your email address"
@@ -90,26 +97,41 @@ export default function Sign_in() {
               onChange={EmailChangeFunc}
             ></input>
           </div>
-          <div className="password">
+          <div className="password input-field" style={{display:'flex'}}>
             <input
-              type="text"
+              type={showpassword===false?'password':'text'}
               placeholder="Enter your  password"
               value={password}
               onChange={PasswordChangeFunc}
+              required
             ></input>
+            {showpassword=== false ? (
+                <FiEyeOff
+                  onClick={showpasswordfunc}
+                  fontSize={"1.4em"}
+                  className=""
+                />
+              ) : (
+                <FaEye
+                  className=""
+                  onClick={showpasswordfunc}
+                  fontSize={"1.4em"}
+                />
+              )}
           </div>
 
-          <div className="submit-btn">
+          <div className="submit-btn" style={{display:'flex',alignItems:'center'}}>
             <button className="btn" type="submit">
               Sign in
             </button>
-          </div>
-          <div className="forget-password">
-            <a href="/" className="forget-password-text">
+            <a href="/" className="forget-password-text" style={{marginLeft:'10px', marginTop:'10px'}}>
               Forgot password?
             </a>
           </div>
-          <div className="create-account">
+         
+            
+        
+          <div className="create-account text-center">
             <p className="Signup-text">
               Don't have an account?<span className="Signup-link">Sign up</span>
             </p>
@@ -124,11 +146,16 @@ const SigninPage = styled.div`
   margin: auto;
   background-color: white;
   width: 25%;
-  text-align: center;
   heigth: 80%;
   border: 0 solid #000;
   margin-top: 1em;
   font-family: 'Oxygen', sans-serif;
+
+
+  .text-center{
+    text-align:center;
+  }
+
   // responsive design  set the width of container
   @media only screen and (max-width: 896px) {
     width: 40%;
@@ -177,24 +204,30 @@ const ShowMessage = styled.div`
 `;
 
 const SigninForm = styled.div`
+  margin-left:1.5em;
+  marging-right:1em;
   input {
-    margin-bottom: 1em;
-    padding: 0.3em 2em;
-    @media only screen and (max-width: 586px) {
-      padding: 0.3em 1em;
-    }
+    border:none;
+    width:20em;
+    outline:none;
+  }
 
-    @media only screen and (max-width: 450px) {
-      padding: 0.3em 0.5em;
-    }
+  
+  .input-field{
+    border: 1px solid rgb(138, 129, 129);
+    width:17em;
+    padding:0.2em 0.5em;
+    margin-bottom:1em;
+    border-radius:4px;
+    
   }
 
   // Design button
   .btn {
-    padding: 0.5em 5.6em;
-    border-radius: 4px;
+    padding: 0.2em 2.6em;
+    border-radius: 7px;
     background: tranparent;
-    border: 2px solid blue;
+    border: 2px solid green;
     margin-bottom: 1em;
     font-size: 1em;
     @media only screen and (max-width: 586px) {
@@ -202,7 +235,7 @@ const SigninForm = styled.div`
     }
   }
   .btn:hover {
-    background-color: blue;
+    background-color: green;
     color: white;
   }
 
@@ -227,8 +260,8 @@ const SigninForm = styled.div`
   }
   .Signup-link {
     margin: 0.2em 0.8em;
-    color: blue;
-    border-bottom: 1px solid blue;
+    color: green;
+    border-bottom: 1px solid green;
     cursor: pointer;
   }
 `;

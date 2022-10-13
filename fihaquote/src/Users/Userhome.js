@@ -3,6 +3,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../Context/Context_State";
 import Navbar from "../Main_Components/Navbar";
+import UserPost from "./UserPost";
 export default function Userhome() {
 
   const context = useContext(AppContext)
@@ -12,22 +13,29 @@ export default function Userhome() {
   IsAuthenticate();
 
   return (
-    <>
+    <main style={{display:'flex'}}>
      <NavigationBar>
           <Navbar />
       </NavigationBar>
-    </>
+      <UserPostSection>
+           <UserPost />
+        </UserPostSection>
+     
+    </main>
   );
 }
 
+const UserPostSection = styled.div`
+  margin-left:10em;
 
+`
 
 
 const NavigationBar = styled.div`
   border-right: 1px solid rgb(230, 230, 230);
   // width: 5%;
   height: 100%;
-  position: absolute;
+  position: fixed;
 
   
   @media only screen and (max-width:768px){
@@ -62,5 +70,6 @@ const NavigationBar = styled.div`
     }
   }
 `;
+
 
 

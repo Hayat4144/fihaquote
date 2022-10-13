@@ -26,7 +26,7 @@ exports.Sigin = async(req,res)=>{
               role:IsUser.IsApplicationUser,
             },process.env.JWT_SECRET) ;
             res.cookie('token',token,{
-                httpOnly:true,
+         
                 expires:new Date(Date.now() + 900000),
                 SameSite:'none',
                 

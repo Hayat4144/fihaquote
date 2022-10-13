@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { FiEyeOff } from "react-icons/fi";
 
 export default function Sign_up() {
   // define state for signup
@@ -11,9 +13,11 @@ export default function Sign_up() {
   const [Processing, setprocess] = useState("Singn up");
   const [successmsg, setsuccesmsg] = useState("");
   const [errorsmsg, seterrormsg] = useState("");
+  const [showpasswd, setshowpasswd] = useState(false);
+  const [showconfpasswd, setshowconfpasswd] = useState(false);
 
   // usenavigate hook to navigate to other routes
-  const navigate = useNavigate() ;
+  const navigate = useNavigate();
 
   // All onchange function of input tag
   const UsernameChangeFunc = (e) => {
@@ -29,7 +33,13 @@ export default function Sign_up() {
   const confirmPasswordChangeFunc = (e) => {
     setConfirmpassword(e.target.value);
   };
+  const showpsswordfunc = () => {
+    setshowpasswd(!showpasswd);
+  };
 
+  const showconfirmpsswordfunc = () => {
+    setshowconfpasswd(!showconfpasswd);
+  };
   // end of onchange function of input tag
 
   // Send the result to the backend
@@ -78,7 +88,7 @@ export default function Sign_up() {
           setsuccesmsg("");
           showmsg.style.display = "none";
           setprocess("Sign up");
-          navigate('/V2/auth/sign_in')
+          navigate("/V2/auth/sign_in");
         }, 5000);
       } else {
         setprocess("Failed");
@@ -108,8 +118,8 @@ export default function Sign_up() {
     <SignupContainer>
       <Signup>
         <WelcomeText>
-          <h2 className="company-name">FihaShare</h2>
-          <h3 className="content-text">
+          <h2 className="company-name text-center">FihaShare</h2>
+          <h3 className="content-text text-center">
             Sign up to see photos and videos from your friends.
           </h3>
         </WelcomeText>
@@ -128,40 +138,76 @@ export default function Sign_up() {
               SignupFormFunc();
             }}
           >
-            <div className="Username">
+            <div className="input-field">
               <input
                 type="text"
                 id="username"
                 placeholder="Enter your username"
                 value={username}
                 onChange={UsernameChangeFunc}
+                required
+                
               />
             </div>
-            <div className="email">
+            <div className="email input-field">
               <input
                 type="email"
                 placeholder="Enter your email address"
                 value={email}
                 onChange={EmailChangeFunc}
+                required
               ></input>
             </div>
-            <div className="password">
+            <div className="password input-field" style={{ display: "flex" }}>
               <input
-                type="text"
+                type={showpasswd === false ? "password" : "text"}
                 placeholder="Enter your  password"
                 value={password}
                 onChange={PasswordChangeFunc}
+                autoComplete="off"
+                required
               ></input>
+              {showpasswd === false ? (
+                <FiEyeOff
+                  onClick={showpsswordfunc}
+                  fontSize={"1.4em"}
+                  className=""
+                />
+              ) : (
+                <FaEye
+                  className=""
+                  onClick={showpsswordfunc}
+                  fontSize={"1.4em"}
+                />
+              )}
             </div>
-            <div className="confirm password">
+            <div
+              className="confirm password input-field"
+              style={{ display: "flex" }}
+            >
               <input
-                type="confirm password"
+                type={showconfpasswd === false ? "password" : "text"}
                 placeholder=" Confirm password"
                 value={confirmpassword}
                 onChange={confirmPasswordChangeFunc}
+                autoComplete="off"
+                required
               ></input>
+              {showconfpasswd === false ? (
+                <FiEyeOff
+                  onClick={showconfirmpsswordfunc}
+                  fontSize={"1.4em"}
+                  className=""
+                />
+              ) : (
+                <FaEye
+                  className=""
+                  onClick={showconfirmpsswordfunc}
+                  fontSize={"1.4em"}
+                />
+              )}
             </div>
-            <div className="bottom-text">
+            <div className="bottom-text text-center">
               <p className="mini-text">
                 People who use our service may have uploaded your contact
                 information to FihaShare. Learn More
@@ -171,13 +217,13 @@ export default function Sign_up() {
                 Cookies Policy .
               </p>
             </div>
-            <div className="submit-btn">
+            <div className="submit-btn text-center">
               <button className="btn" type="submit">
                 {Processing}
               </button>
             </div>
           </form>
-          <div className="account-login">
+          <div className="account-login text-center">
             <p className="login-text">
               Do you have an account?<span className="login-link">login</span>
             </p>
@@ -192,7 +238,6 @@ const SignupContainer = styled.div`
   margin: auto;
   background-color: white;
   width: 25%;
-  text-align: center;
   heigth: 80px;
   border: 0 solid #000;
   margin-top: 1em;
@@ -229,7 +274,13 @@ const WelcomeText = styled.div`
   }
 `;
 
-const Signup = styled.div``;
+const Signup = styled.div`
+  .text-center{
+    text-align:center;
+  }
+
+
+`;
 
 const ShowMessage = styled.div`
   .error-message {
@@ -244,10 +295,8 @@ const ShowMessage = styled.div`
   }
 `;
 const SignupForm = styled.div`
-  input {
-    margin-bottom: 1em;
-    padding: 0.3em 2em;
-  }
+  margin-left: 1em;
+  margin-right:1em;
   .mini-text {
     font-size: 12px;
     padding: 0 1em;
@@ -256,19 +305,35 @@ const SignupForm = styled.div`
     font-size: 12px;
     padding: 0 1.9em;
   }
+  .input-field {
+    border: 1px solid rgb(138, 129, 129);
+    padding: 0.3em 1em;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    font-size: 15px;
+  }
 
+  input {
+    width: 17em;
+    border: none;
+    outline: none;
+    background-color: transprent;
+  }
   // Design button
   .btn {
     padding: 0.5em 4em;
     border-radius: 4px;
     background: tranparent;
-    border: 2px solid blue;
+    border: 2px solid green;
+    border-radius: 2em;
+    margin-bottom: 2em;
+    background: green;
     margin-bottom: 1em;
     font-size: 1em;
   }
   .btn:hover {
-    background-color: blue;
-    color: white;
+    background-color: transparent;
+    color: black;
   }
 
   // account login style
@@ -286,7 +351,8 @@ const SignupForm = styled.div`
   }
   .login-link {
     margin: 0.2em 0.8em;
-    color: blue;
-    border-bottom: 2px solid blue;
+    color: green;
+    border-bottom: 2px solid green;
+   cursor :pointer;
   }
 `;

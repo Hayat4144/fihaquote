@@ -18,7 +18,8 @@ const { UserFollower } = require("../Apps/Quote/User/User_Follower");
 const { Follower_validation, Follower_error } = require("../Apps/Quote/settings/follower_validation");
 const { UserFollowing } = require("../Apps/Quote/User/User_Following");
 const { Following_validation, Following_error } = require("../Apps/Quote/settings/following.Validation");
-
+const {EmailChange} = require('../Settings/EmailChange');
+const { UsernameChangeBackend } = require("../Settings/UsernameChangeBackend");
 
 const lst = (req, res) => {
   return res.status(200).send("how are you.");
@@ -34,9 +35,11 @@ router.post("/authentication/signin", Sigin); // completed
 
 router.post("/authentication/user/logout", IsValidToken, Logout); // completed
 
+//router.get("/user/change/email/verifiy/:id/:token/:currentemail/",EmailVerifyConfirm)
 router.get("/user/verify/email/:id/:token", VerifyEmail); //completed
 
 router.post("/user/change/password", IsValidToken, ChangePassword); //testing
+router.post("/user/change/username", IsValidToken,UsernameChangeBackend)
 
 router.post('/user/post',uploads,User_post_validation,User_post_error,IsValidToken,User_Post)
 
@@ -49,6 +52,10 @@ router.post(
   IsValidToken,
   User_Profile
 );
+
+
+//emai change route 
+router.post('/settings/change/email',IsValidToken,EmailChange) ;
 
 
 // router.get("/hello", IsValidToken, lst);
