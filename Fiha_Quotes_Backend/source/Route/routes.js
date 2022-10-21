@@ -1,7 +1,7 @@
 // initializing router
 const express = require("express");
 const router = express.Router();
-const { Auth_Signup } = require("../Authentication/signup");
+const {Auth_Signup}  = require('../Authentication/signup');
 const { IsValid, IsvalidationTrue,} = require("../MiddleWear_Validation/Authentication");
 const { VerifyEmail } = require("../Authentication/VerifyEmail");
 const { Sigin } = require("../Authentication/Signin");
@@ -20,7 +20,8 @@ const { UserFollowing } = require("../Apps/Quote/User/User_Following");
 const { Following_validation, Following_error } = require("../Apps/Quote/settings/following.Validation");
 const {EmailChange} = require('../Settings/EmailChange');
 const { UsernameChangeBackend } = require("../Settings/UsernameChangeBackend");
-
+const {CommentPost} = require('../Apps/Quote/User/CommentPost');
+const {Like} = require('../Apps/Quote/User/Like');
 const lst = (req, res) => {
   return res.status(200).send("how are you.");
 };
