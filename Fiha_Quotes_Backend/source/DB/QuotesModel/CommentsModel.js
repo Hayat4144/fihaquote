@@ -4,7 +4,7 @@ const Comment_Schema = mongoose.Schema({
     Post_id:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        unique:true
+        
     },
     Commenter_id:{
         type:mongoose.Schema.Types.ObjectId,
@@ -15,8 +15,8 @@ const Comment_Schema = mongoose.Schema({
         required:true,
         
     },
-    comment_on:{
-        type:mongoose.isValidObjectId,
+    comment_on_id:{
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
     },
     created_at:{

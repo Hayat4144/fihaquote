@@ -33,6 +33,9 @@ router.post("/authentication/signup", IsValid, IsvalidationTrue, Auth_Signup); /
 
 router.post("/authentication/signin", Sigin); // completed
 
+router.post('/user/post/comment',IsValidToken,CommentPost)
+router.post('/user/post/like',IsValidToken,Like)
+
 router.post("/authentication/user/logout", IsValidToken, Logout); // completed
 
 //router.get("/user/change/email/verifiy/:id/:token/:currentemail/",EmailVerifyConfirm)
