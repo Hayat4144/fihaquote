@@ -31,10 +31,10 @@ exports.Sigin = async(req,res)=>{
                 SameSite:'Strict',
                 secure:true
             })
-          return res.status(200).send({status:'ok',token})
+          return res.status(200).send({data:'Loging Successful.'})
           }
           else{
-            return res.status(400).send({error:'Invalid email/password check your email'})
+            return res.status(400).send({error:'Invalid email/password .'})
           }
         
     }catch(err){

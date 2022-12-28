@@ -8,15 +8,11 @@ import { CgProfile } from "react-icons/cg";
 import { FaThinkPeaks } from "react-icons/fa";
 import { RiSettings2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector  } from "react-redux";
-import { useCallback } from "react";
+
 
 
 export default function Navbar() {
 
-  const dispatch = useDispatch() ;
-  const name = useSelector(state => state.MyReducer.name);
-  console.log(name)
   return (
     <div className="Menubar">
       <div
@@ -26,13 +22,7 @@ export default function Navbar() {
         }}
       >
        
-      <button onClick={useCallback(
-        () => {
-          dispatch({type:'SHOWNAME'})
-        },
-        [],
-      )
-      }>s</button>  hello
+        hello
       </div>
 
       <MenuIcons>

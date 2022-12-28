@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Notifications from "./Settings/Notifications";
 import SignIn from "./Authentication/Sign_in";
 import SignUp from "./Authentication/Sign_up";
-// import Home from './Main_Components/Home';
+import Home from './Main_Components/Home';
 function App() {
   return (
     <div className="App">
@@ -17,6 +17,7 @@ function App() {
           <Route path="/notification" element={<Notifications />} />
           <Route path="/V2/auth/sign_up" element={<SignUp />} />
           <Route path="/V2/auth/sign_in" element={<SignIn />} />
+          <Route path="/user/home" element={<Home/>} />
         </Routes>
       </Router>
     </div>

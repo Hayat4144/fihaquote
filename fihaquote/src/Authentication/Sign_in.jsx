@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
-import AppContext from '../Context/Context_State'
+import React, { useState } from "react";
+import { BASE_URL } from "../Config/BaseUrl";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Sign_in() {
   // set the state
-
+  const [successmsg, setsuccessmsg] = useState("");
+  const [errormsg, seterrormsgs] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
-  const mystates = useContext(AppContext);
-  const { SignIn, logdin } = mystates;
 
   // change func
   const EmailChangeFunc = (e) => {
@@ -19,27 +19,67 @@ export default function Sign_in() {
     setpassword(e.target.value);
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  //
+  const SIGNIN_FUNC = async () => {
+    await fetch(`${BASE_URL}authentication/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).then(async (res) => {
+      const result = await res.json();
+      if (res.status === 200) {
+        setemail("");
+        setpassword("");
+        const successmsg = document.getElementById("success");
+        setsuccessmsg(result.data);
+        successmsg.innerText = successmsg;
+        successmsg.style.display = "block";
+        dispatch({ type: "SIGNIN" });
+        setTimeout(() => {
+          navigate("/user/home");
+        }, 3000);
+      } else {
+        const errormsgs = document.getElementById("error");
+        seterrormsgs(result.error);
+        errormsgs.innerText = errormsg;
+        errormsgs.style.display = "blocK";
+        setTimeout(() => {
+          errormsgs.style.display = "none";
+        }, 2000);
+      }
+    });
+  };
+
   return (
     <SigninPage>
       <WelcomeText>
         <h2 className="company-name">FihaShare</h2>
         <h3 className="content-text">
-          Welcome Back We are Glad to see you again here. {logdin.toString()}
+          Welcome Back We are Glad to see you again here.
         </h3>
       </WelcomeText>
       <ShowMessage>
         <p className="error-message" id="error">
-          {/* {errorsmsg} */}
+          {errormsg}
         </p>
         <p className="success-message" id="success">
-          {/* {successmsg} */}
+          {successmsg}
         </p>
       </ShowMessage>
       <SigninForm>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            SignIn(email, password);
+            SIGNIN_FUNC(email, password);
           }}
         >
           <div className="email">
@@ -61,7 +101,7 @@ export default function Sign_in() {
 
           <div className="submit-btn">
             <button className="btn" type="submit">
-              {/* {Processing} */}
+              Sign in
             </button>
           </div>
           <div className="forget-password">
@@ -121,11 +161,18 @@ const ShowMessage = styled.div`
     font-size: 14px;
     color: red;
     display: none;
+    color: red;
+    display: none;
+    // border:1px solid red;
+    // bacKground-color:red;
+    // width:5rem;
   }
   .success-message {
     font-size: 14px;
     color: green;
     display: none;
+    // border:1px solid green;
+    // bacKground-color:green;
   }
 `;
 
