@@ -3,7 +3,7 @@
 }
 
 form {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .form_container {
@@ -17,7 +17,8 @@ form {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-input {
+
+.form_container input {
   width: 100%;
   box-sizing: border-box;
   outline: none;
@@ -57,15 +58,18 @@ input {
   border-color: #c3e6cb;
 }
 
-button {
+
+
+.btn button {
   border: 1px solid green;
   width: 100%;
   padding: 8px 5px;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background-color: transparent;
+  background-color: green;
   border-radius: 20px;
   text-align: center;
+  color: white;
   font-size: 15px;
   cursor: pointer;
   outline: none;
@@ -85,19 +89,37 @@ button:hover {
   cursor: pointer;
 }
 
+.content-text{
+  font-size: 30px;
+}
+
+.company-name{
+  font-size: 30px;
+}
+
 @media only screen and (min-width: 600px) {
   .form_container {
-    width: 40%;
+    width: 60%;
     margin: auto;
   }
   .error {
-    width: 40%;
+    width: 60%;
     margin: auto;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .form_container {
+    width: 40%;
+    margin: auto;
+  }
+  .error {
+    width: 40%;
+    margin: auto;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .form_container {
     width: 30%;
     margin: auto;
   }
@@ -106,3 +128,4 @@ button:hover {
     margin: auto;
   }
 }
+
