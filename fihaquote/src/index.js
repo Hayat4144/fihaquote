@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { ContextState } from "./Context/Context_State";
 import { createStore } from "redux";
 import { Provider } from "react-redux";

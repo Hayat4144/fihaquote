@@ -1,5 +1,6 @@
 import ChangePassword from './ChangePassword' ;
 import styled from 'styled-components';
+import React from 'react';
 export default function AllSettings (){
 	return(
 		<AllSettingComponent>
