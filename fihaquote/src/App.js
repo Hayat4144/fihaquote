@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Notifications from "./Settings/Notifications";
 import SignIn from "./Authentication/Sign_in";
 import SignUp from "./Authentication/Sign_up";
-import Userhome from "./Users/Userhome";
 import Home from './Main_Components/Home';
 import ChangePassword from './Settings/ChangePassword';
 import AllSettings from './Settings/AllSettings';
 import EmailChange from "./Settings/EmailChange";
 import UsernameChange from "./Settings/UsernameChange";
 import UserPost from "./Users/UserPost";
+import Userhome from "./Users/Userhome";
+import './App.css'
+
 function App() {
   return (
     <div className="App">

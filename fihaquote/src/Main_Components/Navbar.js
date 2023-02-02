@@ -10,20 +10,16 @@ import { FaThinkPeaks } from "react-icons/fa";
 import { RiSettings2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-
-
+import '../Styles/Navbar.css'
 
 export default function Navbar() {
   // get logdin state from redux store
   const Islogdin = useSelector((state) => state.Sign_In_Reducer.IsLogdin);
   console.log(Islogdin);
   return (
-    <div className="Menubar">
-      <div>hello</div>
-
-      <MenuIcons className="menu-icon">
-        <Icons>
+    <nav>
+      <ul className="menu-icon">
+        <li>
           <Link
             className="Link link-tooltiptext"
             to="/notification"
@@ -31,8 +27,8 @@ export default function Navbar() {
           >
             <VscHome fontSize={"2em"} />
           </Link>
-        </Icons>
-        <Icons>
+        </li>
+        <li>
           <Link
             className="Link"
             to="/notification"
@@ -44,8 +40,8 @@ export default function Navbar() {
           >
             <IoIosNotificationsOutline fontSize={"2em"} />
           </Link>
-        </Icons>
-        <Icons>
+        </li>
+        <li>
           <Link
             className="Link"
             to="/notification"
@@ -57,8 +53,8 @@ export default function Navbar() {
           >
             <BiMessage fontSize={"2em"} />
           </Link>
-        </Icons>
-        <Icons>
+        </li>
+        <li>
           <Link
             className="Link"
             to="/notification"
@@ -70,8 +66,8 @@ export default function Navbar() {
           >
             <BsBookmarks fontSize={"2em"} />
           </Link>
-        </Icons>
-        <Icons>
+        </li>
+        <li>
           <Link
             className="Link"
             to="/notification"
@@ -83,8 +79,8 @@ export default function Navbar() {
           >
             <FaThinkPeaks fontSize={"2em"} />
           </Link>
-        </Icons>
-        <Icons>
+        </li>
+        <li>
           <Link
             className="Link"
             to="/notification"
@@ -96,44 +92,13 @@ export default function Navbar() {
           >
             <RiSettings2Line fontSize={"2em"} />
           </Link>
-        </Icons>
-      </MenuIcons>
-      <UserContext className="user-context">
-        <UserProfile>
-          <CgProfile fontSize={"2em"} />
-        </UserProfile>
-        <LogoutBtn>
-          <AiOutlineLogout
-            fontSize={"2em"}
-            className={`${Islogdin === true ? "show" : "hide"}`}
-          />
-        </LogoutBtn>
-      </UserContext>
-    </div>
+        </li>
+      </ul>
+      <ul className="user-context">
+        <li><CgProfile fontSize={"2em"} /></li>
+        <li> <AiOutlineLogout fontSize={"2em"} className={`${Islogdin === true ? "show" : "hide"}`}/></li>
+      </ul>
+    </nav>
   );
 }
 
-const MenuIcons = styled.div`
-  margin-top: 2em;
-  margin-left: 1em;
-`;
-
-const Icons = styled.div`
-  display: flex;
-  .Link{
-    margin-right:1.3em;
-  }
-
-`;
-
-
-const UserContext = styled.div`
-  position: absolute;
-  bottom: 4rem;
-  margin-left: 1em;
-`;
-
-const UserProfile = styled.div`
-  margin-bottom: 1em;
-`;
-const LogoutBtn = styled.div``;

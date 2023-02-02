@@ -1,0 +1,37 @@
+nav{
+    width: 5em;
+    text-align: center;
+    border-right: 1px solid gray;
+    height: 100vh;
+}
+
+ul  {
+    list-style: none;
+    
+}
+
+.menu-icon li{
+    padding: 1rem 0;
+    cursor: pointer;
+
+}
+
+.menu-icon li:hover{
+    color: green;
+}
+
+.user-context{
+    position: absolute;
+    bottom: 1em;
+    text-align: center;
+    left: 1.5em;
+}
+
+.user-context li{
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+.user-context li:hover{
+    color: green;
+}
