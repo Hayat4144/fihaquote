@@ -1,8 +1,9 @@
 nav{
-    width: 5em;
+    padding: 0 1.5em;
     text-align: center;
     border-right: 1px solid gray;
-    height: 100vh;
+    height: 100%;
+    position: fixed;
 }
 
 ul  {
@@ -22,7 +23,7 @@ ul  {
 
 .user-context{
     position: absolute;
-    bottom: 1em;
+    bottom: 1%;
     text-align: center;
     left: 1.5em;
 }

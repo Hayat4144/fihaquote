@@ -1,0 +1,15 @@
+.user_home_page {
+  display: flex;
+}
+
+.user_home_page > .main_section {
+  display: flex;
+  margin: 2em;
+}
+
+.post_section{
+    /* background-color: red; */
+    width: 45%;
+    margin:0 10em;
+    height: 100%;
+}

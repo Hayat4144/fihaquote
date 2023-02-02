@@ -1,0 +1,118 @@
+.post{
+  border: 1px solid rgb(138, 129, 129);
+  border-radius: 10px;
+}
+
+
+.comment_likes > .Icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 2em;
+  cursor: pointer;
+  outline: none;
+}
+
+
+.post-pic > img{
+  width: 100%;
+}
+
+.comment_likes > .Icons > .icon:hover {
+  color: green;
+}
+
+.like-section {
+  margin: 1em;
+}
+
+.like-section p{
+  padding: 10px 5px;
+}
+
+.like-section > .no-of-likes {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.like-section > .no-of-comment {
+  color: #6f6f6f;
+  font-size: 14px;
+}
+.like-section > .date-of-publish {
+  color: #6f6f6f;
+  font-size: 14px;
+}
+
+.like-section > .user-comment-show {
+  font-size: 16px;
+}
+
+.like-section > .user-comment-show > .username {
+  font-weight: bold;
+  margin-right: 0.5em;
+  font-size: 18px;
+}
+
+.comment-field {
+  width: 100%;
+  border: none;
+  margin-right: 1em;
+  background-color: transparent;
+  outline: none;
+}
+.input-field {
+  border: 1px solid rgb(138, 129, 129);
+  width: 20em;
+  padding: 0.3em 0.5em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.Comment-section button {
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 0.5em 2em;
+  margin-top: 0.5em;
+  color: white;
+  border: 2px solid green;
+  border-radius: 2em;
+  margin-bottom: 2em;
+  background: green;
+}
+
+.Comment-section button:hover {
+  background: transparent;
+  color: black;
+}
+
+.Comment-section .post-form {
+  display: flex;
+  align-items: center;
+}
+
+.post_header {
+  display: flex;
+  align-items: center;
+  height: 4em;
+  justify-content: space-between;
+  margin: 0 2em;
+} 
+
+.username-show{
+  font-size: 20px;
+}
+
+.post_header > .post-header-top {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(138, 129, 129);
+}
+
+
+
+.user-image img{
+  border-radius: 70%;
+}
