@@ -30,7 +30,7 @@ const lst = (req, res) => {
 
 router.post('/uploads',IsValidToken,uploads,User_Avtar) // completed
 
-router.post("/authentication/signup", IsValid, IsvalidationTrue, Auth_Signup); // completed
+router.post("/authentication/signup", Auth_Signup); // completed
 
 router.post("/authentication/signin", Sigin); // completed
 

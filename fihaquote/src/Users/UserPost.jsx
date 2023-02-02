@@ -1,11 +1,14 @@
-import { React, useState } from "react";
+import { useState, Fragment } from "react";
+import React from "react";
+import '../Styles/post.css'
 import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RiHeartsLine } from "react-icons/ri";
 import { AiOutlineComment } from "react-icons/ai";
 import { FiShare } from "react-icons/fi";
 import { BsBookmarkCheck } from "react-icons/bs";
-import { BASE_URL } from "../Config/BaseUrl";
+import { BASE_URL } from "../Config/BaseUrl"
+import '../Styles/post.css'
 
 export default function UserPost() {
   // All state here
@@ -15,7 +18,7 @@ export default function UserPost() {
   // for submit comment
 
   const CommentFunc = async () => {
-    setProcessing('Processing....')
+    setProcessing("Processing....");
     await fetch(`${BASE_URL}/user/post/comment/`, {
       method: "POST",
       headers: {
@@ -32,43 +35,36 @@ export default function UserPost() {
     });
   };
   return (
-    <UserPostComponent>
-      <main className="user-post-data" id="post-data">
-        {/* post header */}
-        <PostHeader>
-          <div className="post-header-top" id="header-top">
-            <div className="user-image">
-              <img
-                width={"45px"}
-                height={"45px"}
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
-                alt="user-pic"
-              ></img>
-            </div>
-            <div className="username-show">
-              <p className="user">Hayat ilyas</p>
-            </div>
-            <div className="dotted-link">
-              <Icons>
-                <BsThreeDotsVertical fontSize={"1.5em"} />
-              </Icons>
-            </div>
-          </div>
-        </PostHeader>
-
-        {/* end of post header */}
-
-        {/* body of post */}
-        <PostPic>
-          <div className="post-pic">
+    <Fragment>
+      <main className="post" id="post-data">
+        <article className="post_header">
+          <figure className="user-image">
             <img
-              src="https://images.pexels.com/photos/36029/aroni-arsa-children-little.jpg?cs=srgb&dl=pexels-pixabay-36029.jpg&fm=jpg"
-              alt="pic"
-              width={"480px"}
-            ></img>
+              width={"45px"}
+              height={"45px"}
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
+              alt="user-pic"
+            />
+          </figure>
+          <div className="username-show">
+            <p className="user">Hayat ilyas</p>
           </div>
-        </PostPic>
-        <CommentAndLike>
+          <div className="dotted-link">
+            <Icons>
+              <BsThreeDotsVertical fontSize={"1.5em"} />
+            </Icons>
+          </div>
+        </article>
+
+
+        <figure className="post-pic">
+          <img
+            src="https://images.pexels.com/photos/36029/aroni-arsa-children-little.jpg?cs=srgb&dl=pexels-pixabay-36029.jpg&fm=jpg"
+            alt="pic"
+            width={"480px"}
+          />
+        </figure>
+        <div className="comment_likes">
           <div className="Icons">
             <div className="like-icon icon">
               <RiHeartsLine fontSize={"2em"} />
@@ -93,8 +89,8 @@ export default function UserPost() {
             <p className="no-of-comment">view all 5 comments</p>
             <p className="date-of-publish">10 days ago.</p>
           </div>
-        </CommentAndLike>
-        <footer className="Comment-section">
+        </div>
+        <section className="Comment-section">
           <form
             className="post-form"
             onSubmit={(e) => {
@@ -118,109 +114,26 @@ export default function UserPost() {
               </button>
             </div>
           </form>
-        </footer>
+        </section>
       </main>
-    </UserPostComponent>
+    </Fragment>
   );
 }
 
-const CommentAndLike = styled.div`
-  // for comment icons
-  .Icons {
-    display: flex;
-    margin: 1em;
-    align-items: center;
-    cursor: pointer;
-
-    .icon {
-      :hover {
-        color: #6f6f6f;
-      }
-    }
-  }
-
-  // for like and comment section
-  .like-section {
-    margin: 1em;
-
-    .no-of-likes {
-      font-weight: bold;
-      font-size: 14px;
-    }
-    .no-of-comment {
-      color: #6f6f6f;
-      font-size: 14px;
-    }
-    .date-of-publish {
-      color: #6f6f6f;
-      font-size: 14px;
-    }
-
-    .user-comment-show {
-      font-size: 13px;
-
-      .username {
-        font-weight: bold;
-        margin-right: 0.5em;
-        font-size: 14px;
-      }
-    }
-  }
-
-  .mx-2 {
-    margin: 0 2em;
-  }
-
-  .bookmark-icon {
-    margin-left: 16em;
-  }
-`;
 const PostPic = styled.div`
   text-align: center;
 `;
 
 const UserPostComponent = styled.div`
-  
   width: 40em;
   height: 70em;
   overflow: hidden;
-// foooter
   footer {
     .post-form {
       display: flex;
       align-items: center;
     }
-    button {
-      margin-left: 1em;
-      padding: 0.3em 2em;
-      margin-top: 0.5em;
-      color: white;
-      border: 2px solid green;
-      border-radius: 2em;
-      margin-bottom: 2em;
-      background: green;
-
-      // applying hover effect
-
-      :hover {
-        background: transparent;
-        color: black;
-      }
-    }
-    .comment-field {
-      width: 20em;
-      border: none;
-      background-color: transparent;
-      outline: none;
-    }
-    .input-field {
-      border: 1px solid rgb(138, 129, 129);
-      width: 20em;
-      padding: 0.3em 0.5em;
-      margin-bottom: 1em;
-      margin-left: 1em;
-      border-radius: 4px;
-    }
+   
   }
   main {
     width: 30em;
@@ -232,8 +145,8 @@ const UserPostComponent = styled.div`
 
 const PostHeader = styled.div`
   // hedaer section
-  background-color:#f9f9f98c;
-  over-flow:hidden;
+  background-color: #f9f9f98c;
+  over-flow: hidden;
   .post-header-top {
     display: flex;
     align-items: center;
